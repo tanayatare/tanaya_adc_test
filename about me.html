@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>About Me</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #4a90e2;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: yellowgreen;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background: rgb(218, 255, 137);
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .bio, #background, #values {
+            padding: 20px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+
+        .bio.visible, #background.visible, #values.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .profile-photo {
+            display: block;
+            max-width: 200px;
+            height: auto;
+            border-radius: 50%;
+            margin: 20px auto;
+        }
+
+        footer {
+            text-align: center;
+            padding: 10px 0;
+            background: #333;
+            color: white;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 600px) {
+            nav ul {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>About Me</h1>
+        <nav>
+            <ul>
+                <li><a href="#bio">Bio</a></li>
+                <li><a href="#background">Background</a></li>
+                <li><a href="#values">Values</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="bio" class="bio">
+            <img src="tanaya_tare.jpeg"  class="profile-photo" width="250" height="300">
+            <h2>Bio</h2>
+            <p>Hi, I'm Tanaya Tare, a passionate individual with a love for learning and exploring new ideas. My journey has been shaped by a diverse set of experiences that fuel my creativity and ambition. I believe in the power of storytelling and strive to connect with others through my work and personal interactions.</p>
+        </section>
+
+        <section id="background">
+            <h2>Background & Experiences</h2>
+            <p>I have a background in design (interaction), which has equipped me with valuable skills and insights. Over the years, I have worked on various projects and gathered experience. Teamwork and collaboration have been a part of it. Each role has taught me the importance of adaptability and collaboration in achieving goals.</p>
+        </section>
+
+        <section id="values">
+            <h2>Values & Mission</h2>
+            <p>My core values revolve around integrity, empathy, and continuous growth. I believe in making a positive impact in everything I do, whether it's through my professional endeavors or community involvement. My mission is to inspire others and contribute to a world where creativity and compassion thrive together.</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2024 Tanaya Tare</p>
+    </footer>
+
+    <script>
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const sections = document.querySelectorAll('section');
+        const options = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, options);
+
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
